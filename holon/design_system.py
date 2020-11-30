@@ -13,5 +13,5 @@ class PrincipleRule(BaseModel):
 
 
 @autocomplete
-class DesignSystem(BaseModel):
+class APIDesignSystem(BaseModel):
     principles: List[PrincipleRule]

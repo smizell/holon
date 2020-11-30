@@ -13,4 +13,9 @@ class HTTPMethod(Enum):
     TRACE = "TRACE"
 
 
+class HTTPMessage(Enum):
+    REQUEST = "request"
+    RESPONSE = "response"
+
+
 __all__ = ["HTTPMethod", "HTTPStatus"]

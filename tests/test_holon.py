@@ -1,7 +1,8 @@
 from holon import __version__
+from holon.ietf import rfc7232
 from holon.formats.alps import ALPS, Descriptor, DescriptorType, Doc, Link
 from holon.ietf.rfc2119 import Keyword
-from holon.design_system import APIDesignSystem, PrincipleRule
+from holon.design_system import APIDesignSystem, HeaderRule, PrincipleRule
 from holon.models import wadm
 
 
@@ -15,7 +16,12 @@ def test_design_system():
             PrincipleRule(keyword=Keyword.SHOULD, principle=wadm.resource_centric),
             PrincipleRule(keyword=Keyword.MAY, principle=wadm.affordance_centric),
             PrincipleRule(keyword=Keyword.MUST_NOT, principle=wadm.database_centric),
-        ]
+        ],
+        headers=[
+            HeaderRule(keyword=Keyword.MAY, header=rfc7232.if_match),
+            HeaderRule(keyword=Keyword.MAY, header=rfc7232.if_none_match),
+            HeaderRule(keyword=Keyword.MAY, header=rfc7232.etag),
+        ],
     )
 
 

@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Dict, ForwardRef, List, Literal, Optional, Union
+from typing import Any, Dict, ForwardRef, List, Literal, Optional, Union
 from pydantic import BaseModel, root_validator
 from holon.writing import autocomplete
 
@@ -54,9 +54,9 @@ class Descriptor(BaseModel):
     links: List[Link] = []
 
     @root_validator
-    def check_id_name(cls, value):
+    def check_id_name(cls, value: Dict[str, Any]) -> Dict[str, Any]:
         if value["id"] is None and value["name"] is None:
-            raise Value("You must set either the id or name of a descriptor")
+            raise ValueError("You must set either the id or name of a descriptor")
         return value
 
 

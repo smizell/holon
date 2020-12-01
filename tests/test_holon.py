@@ -3,6 +3,7 @@ from holon.ietf import rfc7232
 from holon.design_system import (
     APIDesignSystem,
     HeaderRule,
+    HTTPRuleSet,
     MediaTypeRule,
     PrincipleRule,
 )
@@ -24,32 +25,31 @@ def test_design_system():
             PrincipleRule(keyword=Keyword.MAY, principle=wadm.affordance_centric),
             PrincipleRule(keyword=Keyword.MUST_NOT, principle=wadm.database_centric),
         ],
-        headers=[
-            HeaderRule(
-                keyword=Keyword.MAY,
-                message_type=HTTPMessage.REQUEST,
-                header=rfc7232.if_match,
-            ),
-            HeaderRule(
-                keyword=Keyword.MAY,
-                message_type=HTTPMessage.RESPONSE,
-                header=rfc7232.if_none_match,
-            ),
-            HeaderRule(
-                keyword=Keyword.MAY,
-                message_type=HTTPMessage.RESPONSE,
-                header=rfc7232.etag,
-            ),
-        ],
-        media_types=[
-            MediaTypeRule(
-                keyword=Keyword.MUST,
-                media_type=MediaType(
-                    name="application/json",
-                    reference="https://tools.ietf.org/html/rfc8259",
+        http_rules=HTTPRuleSet(
+            headers=[
+                HeaderRule(
+                    keyword=Keyword.MAY,
+                    header=rfc7232.if_match,
                 ),
-            )
-        ],
+                HeaderRule(
+                    keyword=Keyword.MAY,
+                    header=rfc7232.if_none_match,
+                ),
+                HeaderRule(
+                    keyword=Keyword.MAY,
+                    header=rfc7232.etag,
+                ),
+            ],
+            media_types=[
+                MediaTypeRule(
+                    keyword=Keyword.MUST,
+                    media_type=MediaType(
+                        name="application/json",
+                        reference="https://tools.ietf.org/html/rfc8259",
+                    ),
+                )
+            ],
+        ),
     )
 
 

@@ -19,19 +19,21 @@ class PrincipleRule(BaseModel):
 class HeaderRule(BaseModel):
     keyword: Keyword
     header: Header
-    http_method: Optional[HTTPMethod] = None
-    message_type: Optional[HTTPMessage] = None
 
 
 @autocomplete
 class MediaTypeRule(BaseModel):
     keyword: Keyword
     media_type: MediaType
-    message_type: Optional[HTTPMessage] = None
+
+
+@autocomplete
+class HTTPRuleSet(BaseModel):
+    headers: Optional[List[HeaderRule]] = []
+    media_types: Optional[List[MediaTypeRule]] = []
 
 
 @autocomplete
 class APIDesignSystem(BaseModel):
     principles: Optional[List[PrincipleRule]] = []
-    headers: Optional[List[HeaderRule]] = []
-    media_types: Optional[List[MediaTypeRule]] = []
+    http_rules: Optional[HTTPRuleSet] = None

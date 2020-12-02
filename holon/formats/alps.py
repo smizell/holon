@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Any, Dict, ForwardRef, List, Literal, Optional, Union
 from pydantic import BaseModel, root_validator
-from holon.writing import autocomplete
+from holon.base import autocomplete
 
 
 class Format(Enum):

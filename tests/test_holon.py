@@ -1,16 +1,13 @@
 from holon import __version__
+from holon.conventions import case, json
+from holon.design_system import APIDesignSystem
+from holon.principles import Principle, PrincipleRule
+from holon.protocols import http
 from holon.ietf import rfc7232
-from holon.design_system import (
-    APIDesignSystem,
-    HeaderRule,
-    HTTPRuleSet,
-    MediaTypeRule,
-    PrincipleRule,
-)
 from holon.formats.alps import ALPS, Descriptor, DescriptorType, Doc, Link
-from holon.http import HTTPMessage, HTTPMethod
 from holon.ietf.rfc2119 import Keyword
-from holon.media_types import MediaType
+
+# from holon.media_types import MediaType, MediaTypeRule
 from holon.models import wadm
 
 
@@ -21,33 +18,45 @@ def test_version():
 def test_design_system():
     APIDesignSystem(
         principles=[
-            PrincipleRule(keyword=Keyword.SHOULD, principle=wadm.resource_centric),
-            PrincipleRule(keyword=Keyword.MAY, principle=wadm.affordance_centric),
-            PrincipleRule(keyword=Keyword.MUST_NOT, principle=wadm.database_centric),
+            PrincipleRule(requirement=Keyword.SHOULD, use=wadm.resource_centric),
+            PrincipleRule(requirement=Keyword.MAY, use=wadm.affordance_centric),
+            PrincipleRule(requirement=Keyword.MUST_NOT, use=wadm.database_centric),
         ],
-        http_rules=HTTPRuleSet(
+        http_rules=http.HTTPRuleSet(
             headers=[
-                HeaderRule(
-                    keyword=Keyword.MAY,
-                    header=rfc7232.if_match,
+                http.HeaderRule(
+                    requirement=Keyword.MAY,
+                    use=rfc7232.if_match,
                 ),
-                HeaderRule(
-                    keyword=Keyword.MAY,
-                    header=rfc7232.if_none_match,
+                http.HeaderRule(
+                    requirement=Keyword.MAY,
+                    use=rfc7232.if_none_match,
                 ),
-                HeaderRule(
-                    keyword=Keyword.MAY,
-                    header=rfc7232.etag,
+                http.HeaderRule(
+                    requirement=Keyword.MAY,
+                    use=rfc7232.etag,
                 ),
             ],
             media_types=[
-                MediaTypeRule(
-                    keyword=Keyword.MUST,
-                    media_type=MediaType(
+                http.MediaTypeRule(
+                    requirement=Keyword.MUST,
+                    use=http.MediaType(
                         name="application/json",
                         reference="https://tools.ietf.org/html/rfc8259",
                     ),
                 )
+            ],
+            conventions=[
+                json.ConventionRule(
+                    requirement=Keyword.MUST_NOT,
+                    subject=json.JSONElement.OBJECT,
+                    convention=json.allow_null,
+                ),
+                json.ConventionRule(
+                    requirement=Keyword.MUST,
+                    subject=json.JSONElement.PROPERTY,
+                    convention=case.snake_cake,
+                ),
             ],
         ),
     )

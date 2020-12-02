@@ -22,7 +22,7 @@ class Definition(BaseModel):
 
 
 @autocomplete
-class DefinitionRule(BaseModel, Generic[T]):
+class DefinitionRule(BaseModel):
     requirement: Keyword
 
 
@@ -32,7 +32,7 @@ class Convention(Definition):
 
 
 @autocomplete
-class ConventionRule(BaseModel, Generic[T]):
+class ConventionRule(DefinitionRule, Generic[T]):
     requirement: Keyword
     convention: Convention
     subject: Union[T, List[T]]

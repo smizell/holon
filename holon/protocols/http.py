@@ -31,7 +31,7 @@ class Header(Definition):
 
 
 @autocomplete
-class HeaderRule(DefinitionRule[Header]):
+class HeaderRule(DefinitionRule):
     header: Header
 
 
@@ -41,7 +41,7 @@ class MediaType(Definition):
 
 
 @autocomplete
-class MediaTypeRule(DefinitionRule[MediaType]):
+class MediaTypeRule(DefinitionRule):
     media_type: MediaType
 
 

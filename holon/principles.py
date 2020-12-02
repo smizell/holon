@@ -9,7 +9,7 @@ class Principle(Definition):
 
 
 @autocomplete
-class PrincipleRule(DefinitionRule[Principle]):
+class PrincipleRule(DefinitionRule):
     pass
 
 

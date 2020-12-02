@@ -18,9 +18,11 @@ def test_version():
 def test_design_system():
     APIDesignSystem(
         principles=[
-            PrincipleRule(requirement=Keyword.SHOULD, use=wadm.resource_centric),
-            PrincipleRule(requirement=Keyword.MAY, use=wadm.affordance_centric),
-            PrincipleRule(requirement=Keyword.MUST_NOT, use=wadm.database_centric),
+            PrincipleRule(requirement=Keyword.SHOULD, principle=wadm.resource_centric),
+            PrincipleRule(requirement=Keyword.MAY, principle=wadm.affordance_centric),
+            PrincipleRule(
+                requirement=Keyword.MUST_NOT, principle=wadm.database_centric
+            ),
         ],
         http_rules=http.HTTPRuleSet(
             headers=[

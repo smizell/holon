@@ -10,7 +10,7 @@ class Principle(Definition):
 
 @autocomplete
 class PrincipleRule(DefinitionRule):
-    pass
+    principle: Principle
 
 
 robustness = Principle(

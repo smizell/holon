@@ -24,6 +24,7 @@ robustness = Principle(
 yagni = Principle(name="YAGNI", reference="https://martinfowler.com/bliki/Yagni.html")
 
 # TODO: find good link for these
+# TODO: move to practice
 design_first = Principle(name="Design First")
 code_first = Principle(name="Code First")
 api_first = Principle(name="API First")

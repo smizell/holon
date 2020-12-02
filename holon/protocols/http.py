@@ -32,7 +32,7 @@ class Header(Definition):
 
 @autocomplete
 class HeaderRule(DefinitionRule[Header]):
-    pass
+    header: Header
 
 
 @autocomplete
@@ -42,7 +42,7 @@ class MediaType(Definition):
 
 @autocomplete
 class MediaTypeRule(DefinitionRule[MediaType]):
-    pass
+    media_type: MediaType
 
 
 @autocomplete

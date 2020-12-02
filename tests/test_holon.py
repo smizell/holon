@@ -26,33 +26,33 @@ def test_design_system():
             headers=[
                 http.HeaderRule(
                     requirement=Keyword.MAY,
-                    use=rfc7232.if_match,
+                    header=rfc7232.if_match,
                 ),
                 http.HeaderRule(
                     requirement=Keyword.MAY,
-                    use=rfc7232.if_none_match,
+                    header=rfc7232.if_none_match,
                 ),
                 http.HeaderRule(
                     requirement=Keyword.MAY,
-                    use=rfc7232.etag,
+                    header=rfc7232.etag,
                 ),
             ],
             media_types=[
                 http.MediaTypeRule(
                     requirement=Keyword.MUST,
-                    use=http.MediaType(
+                    media_type=http.MediaType(
                         name="application/json",
                         reference="https://tools.ietf.org/html/rfc8259",
                     ),
                 )
             ],
             conventions=[
-                json.ConventionRule(
+                json.JSONConventionRule(
                     requirement=Keyword.MUST_NOT,
                     subject=json.JSONElement.OBJECT,
                     convention=json.allow_null,
                 ),
-                json.ConventionRule(
+                json.JSONConventionRule(
                     requirement=Keyword.MUST,
                     subject=json.JSONElement.PROPERTY,
                     convention=case.snake_cake,

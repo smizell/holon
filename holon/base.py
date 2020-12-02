@@ -24,7 +24,6 @@ class Definition(BaseModel):
 @autocomplete
 class DefinitionRule(BaseModel, Generic[T]):
     requirement: Keyword
-    use: T
 
 
 @autocomplete

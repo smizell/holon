@@ -12,7 +12,7 @@ from holon.models import wadm
 
 
 def test_version():
-    assert __version__ == "0.1.0"
+    assert __version__ == "0.1.1"
 
 
 def test_design_system():

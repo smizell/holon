@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "holon"
-version = "0.1.0"
+version = "0.1.1"
 description = "Experimental API Design Dystem library"
 authors = ["Stephen Mizell <smizell@gmail.com>"]
 license = "MIT"
